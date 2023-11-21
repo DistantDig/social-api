@@ -1,6 +1,6 @@
 const { ObjectId } = require('bson');
 const { Schema, model } = require('mongoose');
-const formatTime = require('../utils/util');
+const formatTimeStamp = require('../utils/util');
 
 const reactionSchema = new Schema(
     {
@@ -20,7 +20,7 @@ const reactionSchema = new Schema(
         },
         createdAt: {
             type: Date,
-            get: formatTime,
+            get: formatTimeStamp,
             default: Date.now
         }
     },

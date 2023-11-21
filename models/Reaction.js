@@ -1,12 +1,10 @@
-const { ObjectId } = require('bson');
 const { Schema, model } = require('mongoose');
 const formatTimeStamp = require('../utils/util');
 
 const reactionSchema = new Schema(
     {
         reactionID: {
-            type: ObjectId,
-            default: new ObjectId
+            // Need to set to objectID type
         },
         reactionBody: {
             type: String,

@@ -14,13 +14,13 @@ module.exports = {
     // Get one user by id
     async getUserByID (req, res) {
         try {
-            const users = await User.findOne({ _id: req.params.userID })
+            const user = await User.findOne({ _id: req.params.userID })
             .select('__v');
 
-            if (!users) {
+            if (!user) {
                 return res.status(404).json({ message: 'No user found with that ID'});
             }
-            res.json(users);
+            res.json(user);
         } catch (err) {
             res.status(500).json(err);
         }
@@ -29,8 +29,8 @@ module.exports = {
     // Creates a new user
     async createUser (req, res) {
         try {
-            const users = await User.create(req.body);
-            res.json(users);
+            const user = await User.create(req.body);
+            res.json(user);
         } catch (err) {
             res.status(500).json(err);
         }
@@ -39,14 +39,14 @@ module.exports = {
     // Deletes a user by id
     async deleteUser (req, res) {
         try {
-            const users = await User.findOneAndDelete({ _id: req.params.userID });
+            const user = await User.findOneAndDelete({ _id: req.params.userID });
 
             if (!user) {
                 return res.status(404).json({ message: 'No user found with that ID'});
             }
 
             await Thought.deleteMany({ _id: { $in: user.thoughts }});
-            res.json(users);
+            res.json(user);
         } catch (err) {
             res.status(500).json(err);
         }

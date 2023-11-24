@@ -1,4 +1,4 @@
-const { Reaction } = require('../models');
+const { Reaction, Thought } = require('../models');
 
 module.exports = {
     // Get all reactions
@@ -29,8 +29,17 @@ module.exports = {
     // Creates a new reaction
     async createReaction (req, res) {
         try {
-            const reaction = await Reaction.create(req.body);
-            res.json(reaction);
+            const thought = await Thought.findOneAndUpdate(
+                { _id: req.params.thoughtID},
+                { $addToSet: { reactions: req.body } },
+                { runValidators: true}
+            );
+
+            if (!thought) {
+                return res.status(404).json({ message: 'No thought found with that ID'});
+            }
+
+            res.json(thought);
         } catch (err) {
             res.status(500).json(err);
         }

@@ -4,7 +4,8 @@ const formatTimeStamp = require('../utils/util');
 const reactionSchema = new Schema(
     {
         reactionID: {
-            // Need to set to objectID type
+            type: Schema.Types.ObjectId,
+            default: () => new Types.ObjectId()
         },
         reactionBody: {
             type: String,

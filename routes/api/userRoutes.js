@@ -3,6 +3,7 @@ const {
     getUsers,
     getUserByID,
     createUser,
+    updateUser,
     deleteUser,
     addFriend,
     removeFriend
@@ -14,6 +15,7 @@ router.route('/')
 
 router.route('/:userID')
     .get(getUserByID)
+    .put(updateUser)
     .delete(deleteUser);
 
 router.route('/:userID/friends/:friendID')

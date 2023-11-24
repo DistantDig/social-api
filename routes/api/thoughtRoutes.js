@@ -13,3 +13,5 @@ router.route('/')
 router.route('/:thoughtID')
     .get(getThoughtByID)
     .delete(deleteThought);
+
+    module.exports = router;

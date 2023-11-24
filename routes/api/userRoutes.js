@@ -13,3 +13,5 @@ router.route('/')
 router.route('/:userID')
     .get(getUserByID)
     .delete(deleteUser);
+
+    module.exports = router;

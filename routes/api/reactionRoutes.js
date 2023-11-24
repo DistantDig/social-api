@@ -13,3 +13,5 @@ router.route('/')
 router.route('/:reactionID')
     .get(getReactionByID)
     .delete(deleteReaction);
+
+    module.exports = router;
